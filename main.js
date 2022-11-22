@@ -1,7 +1,7 @@
 const body=document.querySelector('body');
 body.style.display='flex';
 body.style.justifyContent='center';
-body.style.margin='50px 0px 0px 0px';
+body.style.margin='50px 0px 50px 0px'
 
 const gridContainer=document.querySelector('.gridContainer');
 gridContainer.style.display='flex';
@@ -9,9 +9,9 @@ gridContainer.style.flexWrap='wrap';
 gridContainer.style.borderStyle='solid';
 gridContainer.style.borderColor='lightgrey';
 
-let x=32;
-gridContainer.style.width=`${x*7}px`
-gridContainer.style.height=`${x*7}px`;
+let x=100;
+gridContainer.style.width=`${x*5}px`
+gridContainer.style.height=`${x*5}px`;
 let totalGrid=x*x;
 for(i=0;i<totalGrid;i++){
     const grid = document.createElement('div');
@@ -20,7 +20,7 @@ for(i=0;i<totalGrid;i++){
     //grid.style.borderStyle='solid';
     grid.style.height='5px';
     grid.style.width='5px';
-    grid.style.borderWidth='1px';
+    //grid.style.borderWidth='1px';
     //grid.style.borderColor='lightgrey'
 
     grid.addEventListener('mouseover',(event)=>{
