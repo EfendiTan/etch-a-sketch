@@ -1,67 +1,67 @@
 const body=document.querySelector('body');
-body.style.display='flex';
-body.style.justifyContent='center';
-body.style.margin='50px 0px 50px 0px'
 
 const gridContainer=document.querySelector('.gridContainer');
-gridContainer.style.display='flex';
-gridContainer.style.flexWrap='wrap';
-gridContainer.style.borderStyle='solid';
-gridContainer.style.borderColor='lightgrey';
 
-let x=100;
-gridContainer.style.width=`${x*5}px`
-gridContainer.style.height=`${x*5}px`;
-let totalGrid=x*x;
+//get size of the container
+let size;
+size=prompt('How many squares you want each side? (Max 100)');
+while(isNaN(size)||size>100){
+    alert('Please input number only and max number is 100')
+    size=prompt('How many squares you want each side? (Max 100 and please input number only)');
+}   
+while(size>100){
+    alert('Please input from 1-100 only')
+    size=prompt('How many squares you want each side? (Max 100)');
+}     
+let totalGrid=size*size;
 for(i=0;i<totalGrid;i++){
-    const grid = document.createElement('div');
+    let grid = document.createElement('div');
     gridContainer.appendChild(grid);
+    grid.style.height=`${480/size}px`;
+    grid.style.width=`${480/size}px`;
+    grid.addEventListener('mouseover',(event)=>{grid.style.backgroundColor='black';
+    },);
+};
 
-    //grid.style.borderStyle='solid';
-    grid.style.height='5px';
-    grid.style.width='5px';
-    //grid.style.borderWidth='1px';
-    //grid.style.borderColor='lightgrey'
-
-    grid.addEventListener('mouseover',(event)=>{
-        event.stopPropagation();
-        grid.style.backgroundColor='black';
-    })
-    
+function getNewSize(){
+    while(gridContainer.hasChildNodes()){
+        gridContainer.removeChild(gridContainer.firstChild);
+    }
+    size=prompt('How many squares you want each side? (Max 100)');
+    while(size>100){
+            alert('Please input from 1-100 only')
+            size=prompt('How many squares you want each side? (Max 100)');        
+    }
+    while(isNaN(size)||size>100){
+        alert('Please input number only and max number is 100')
+        size=prompt('How many squares you want each side? (Max 100 and please input number only)');
+    }   
+    setGrid(size);
 }
 
-//let x = 32;
-// for(let i=0;i<x;i++){
-//     const columnDiv=document.createElement('div');
-//     gridContainer.appendChild(columnDiv);
-//     columnDiv.style.display='flex';
+const sizeButton=document.querySelector('.sizeButton');
+sizeButton.addEventListener('click',getNewSize);
 
-//     columnDiv.addEventListener('click',(event)=>{
-//         event.stopPropagation()
-//         columnDiv.style.backgroundColor='black';
-//     });
+gridContainer.style.width=`480px`
+gridContainer.style.height=`480px`;
+function setGrid(size){
+    let totalGrid=size*size;
+    for(i=0;i<totalGrid;i++){
+        let grid = document.createElement('div');
+        gridContainer.appendChild(grid);
+        grid.style.height=`${480/size}px`;
+        grid.style.width=`${480/size}px`;
+        grid.addEventListener('mouseover',(event)=>{grid.style.backgroundColor='black';
+        },);
+    };
+}
 
-//     for(let i=0;i<x;i++){
-//         const rowDiv=document.createElement('div')
-//         columnDiv.appendChild(rowDiv);
-//         rowDiv.style.width='10px';
-//         rowDiv.style.height='10px';
-//         rowDiv.style.borderStyle='solid';
-//         rowDiv.style.borderWidth='1px';
-//         rowDiv.style.borderColor='grey';
-//         rowDiv.style.display='flex'
-
-//         rowDiv.addEventListener('click',(event)=>{
-//             event.stopPropagation()
-//             rowDiv.style.backgroundColor='black';
-//         });
-//     }    
-// }
-
-
-
-
-
-
-
-
+//clear button
+const clearButton=document.querySelector('.clearButton');
+clearButton.addEventListener('click',clear);
+function clear(){
+    const gridContainerContent=document.querySelectorAll('.gridContainer div');
+    for(let i=0;i<gridContainerContent.length;i++){
+        gridContainerContent[i].style.backgroundColor='white';
+    }
+}
