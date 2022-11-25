@@ -38,7 +38,7 @@ function getNewSize(){
     }   
     setGrid(size);
 }
-
+//size button
 const sizeButton=document.querySelector('.sizeButton');
 sizeButton.addEventListener('click',getNewSize);
 
@@ -55,6 +55,15 @@ function setGrid(size){
         },);
     };
 }
+//pick color button
+const getColor=document.querySelector('.colorPicker');
+getColor.addEventListener('click',color);
+function color(){
+    console.log(getColor.value);
+}
+
+//Default grid will be 10 square each side
+setGrid(10);
 
 //clear button
 const clearButton=document.querySelector('.clearButton');
@@ -63,5 +72,40 @@ function clear(){
     const gridContainerContent=document.querySelectorAll('.gridContainer div');
     for(let i=0;i<gridContainerContent.length;i++){
         gridContainerContent[i].style.backgroundColor='white';
+    }
+}
+
+//RGB button
+const rgbButton=document.querySelector('.rgbButton');
+
+rgbButton.addEventListener('click',rgbColor);
+function rgbColor(){
+    const gridContainerContent=document.querySelectorAll('.gridContainer div');
+    function randomColor(){
+        let randomNum = Math.floor(Math.random()*256);
+        return randomNum;
+    }
+    for(let i=0;i<gridContainerContent.length;i++){
+    gridContainerContent[i].addEventListener('mouseover',(event)=>{gridContainerContent[i].style.backgroundColor=`rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;});
+    }
+}
+
+//Gradient button
+const gradientButton = document.querySelector('.gradientButton')
+gradientButton.addEventListener('click',gradient);
+function gradient(){
+    const gridContainerContent=document.querySelectorAll('.gridContainer div');
+    let color=255;
+    function gradientGenerator(){
+        if(color<=0){
+            color=255;
+        }   
+        else if(color>0){
+            color=(color-(color/100*10)).toFixed();
+        }
+        return color;
+    }
+    for(let i=0;i<gridContainerContent.length;i++){
+    gridContainerContent[i].addEventListener('mouseover',(event)=>{gridContainerContent[i].style.backgroundColor=`rgb(${gradientGenerator()}, ${gradientGenerator()}, ${gradientGenerator()})`;})
     }
 }
