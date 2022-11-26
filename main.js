@@ -45,6 +45,9 @@ sizeButton.addEventListener('click',getNewSize);
 gridContainer.style.width=`480px`
 gridContainer.style.height=`480px`;
 function setGrid(size){
+    while(gridContainer.hasChildNodes()){
+        gridContainer.removeChild(gridContainer.firstChild);
+    }
     let totalGrid=size*size;
     for(i=0;i<totalGrid;i++){
         let grid = document.createElement('div');
@@ -59,11 +62,14 @@ function setGrid(size){
 const getColor=document.querySelector('.colorPicker');
 getColor.addEventListener('click',color);
 function color(){
-    console.log(getColor.value);
+    const gridContainerContent=document.querySelectorAll('.gridContainer div');
+    for(let i=0;i<gridContainerContent.length;i++){
+        gridContainerContent[i].addEventListener('mouseover',(event)=>{gridContainerContent[i].style.backgroundColor=`${getColor.value}`;});
+    }
 }
 
-//Default grid will be 10 square each side
-setGrid(10);
+//Default grid will be 16 square each side
+setGrid(16);
 
 //clear button
 const clearButton=document.querySelector('.clearButton');

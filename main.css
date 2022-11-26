@@ -31,3 +31,11 @@ body{
     border-width: 2px;
     border-style: solid;
 }
+.colorPicker{
+    width: 80px;
+    height: 30px;
+    background-color: white;
+    border-color: black;
+    padding: 0px;
+    border-width: 2px;
+}
